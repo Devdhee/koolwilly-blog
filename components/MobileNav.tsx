@@ -1,3 +1,4 @@
+import { HiMenuAlt3 } from "react-icons/hi";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import {
@@ -12,12 +13,14 @@ import {
 
 function MobileNav() {
   return (
-    <nav className="px-4 lg:hidden py-4 shadow-md fixed z-50 w-full top-0 bg-background">
+    <nav className="px-4 lg:hidden py-4 shadow-sm fixed z-50 w-full top-0 bg-background">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/">KoolWilly.</Link>
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline">Open</Button>
+            <Button variant="outline">
+              <HiMenuAlt3 className="size-6" />
+            </Button>
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
