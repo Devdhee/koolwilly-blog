@@ -1,14 +1,10 @@
 import "./globals.css";
-import { Poppins } from "next/font/google";
 
 import { Metadata } from "next";
 import MainMenu from "@/components/MainMenu";
 import Footer from "@/components/Footer";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
+import { poppins } from "./fonts";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Koolwilly.",
@@ -23,9 +19,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <MainMenu />
-        {children}
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <MainMenu />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
