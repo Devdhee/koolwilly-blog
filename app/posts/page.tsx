@@ -14,6 +14,8 @@ import PostPreviewCard from "@/components/PostPreviewCard";
 import { BLOG_POSTS } from "@/lib/content";
 import { Post } from "@/lib/typesDefinition";
 import { Input } from "@/components/ui/input";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { AlertCircle } from "lucide-react";
 
 function PostsPage() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -60,7 +62,7 @@ function PostsPage() {
   };
 
   return (
-    <div className="px-4 py-20 md:py-24 mt-8 lg:mt-16 md:px-6 lg:px-8">
+    <div className="px-4 py-20 md:py-24 mt-8 lg:mt-16 md:px-6 lg:px-8 min-h-[90vh]">
       <section className="container mx-auto">
         <header className="flex justify-center">
           <div className="relative w-96 mb-8">
@@ -80,47 +82,56 @@ function PostsPage() {
           ))}
         </div>
 
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious
-                onClick={handlePrevious}
-                className={
-                  currentPage === 1
-                    ? "pointer-events-none opacity-50"
-                    : "cursor-pointer"
-                }
-              />
-            </PaginationItem>
-
-            {pageNumbers.map((number) => (
-              <PaginationItem key={number}>
-                <PaginationLink
-                  onClick={() => setCurrentPage(number)}
-                  isActive={currentPage === number}
+        {currentPosts.length > 0 ? (
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  onClick={handlePrevious}
                   className={
-                    currentPage === number
-                      ? "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground font-bold"
-                      : "hover:bg-muted cursor-pointer"
+                    currentPage === 1
+                      ? "pointer-events-none opacity-50"
+                      : "cursor-pointer"
                   }
-                >
-                  {number}
-                </PaginationLink>
+                />
               </PaginationItem>
-            ))}
 
-            <PaginationItem>
-              <PaginationNext
-                onClick={handleNext}
-                className={
-                  currentPage === totalPages
-                    ? "pointer-events-none opacity-50"
-                    : "cursor-pointer"
-                }
-              />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+              {pageNumbers.map((number) => (
+                <PaginationItem key={number}>
+                  <PaginationLink
+                    onClick={() => setCurrentPage(number)}
+                    isActive={currentPage === number}
+                    className={
+                      currentPage === number
+                        ? "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground font-bold"
+                        : "hover:bg-muted cursor-pointer"
+                    }
+                  >
+                    {number}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+
+              <PaginationItem>
+                <PaginationNext
+                  onClick={handleNext}
+                  className={
+                    currentPage === totalPages
+                      ? "pointer-events-none opacity-50"
+                      : "cursor-pointer"
+                  }
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        ) : (
+          <Alert variant="destructive" className="max-w-sm mx-auto py-8">
+            <AlertDescription className="flex gap-5 items-center font-semibold">
+              <AlertCircle className="h-8 w-8 font-bold" />
+              No Results Found!
+            </AlertDescription>
+          </Alert>
+        )}
       </section>
     </div>
   );
