@@ -3,7 +3,7 @@ function Footer() {
     <div className="bg-muted py-6 px-4 w-full bottom-0">
       <section className="container mx-auto">
         <p className="text-foreground text-center text-sm">
-          &copy; 2024. Wilson Omiunu - All rights reserved
+          &copy; Wilson Omiunu - All rights reserved
         </p>
       </section>
     </div>

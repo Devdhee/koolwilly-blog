@@ -14,7 +14,6 @@ function PostPage() {
           <PostDetail postId={postId} />
         </div>
         <div className="md:col-span-1">
-          
           <RecentPostsSidebar />
         </div>
       </section>
