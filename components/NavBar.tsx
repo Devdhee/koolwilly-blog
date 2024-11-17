@@ -14,7 +14,7 @@ function NavBar() {
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/">
           <h3 className={`${recursive.className} text-xl font-bold`}>
-            KoolWilly
+            KoolWilly.
           </h3>
         </Link>
         <div className="space-x-10 flex items-center">
